@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { SyntheticEvent, useState } from 'react'
 import { Modal, Button, Card } from 'react-bootstrap'
 
 interface FoodQuantity {
@@ -30,27 +30,39 @@ const ShoppingCart: React.FC<Props> = ({
 }) => {
 
   const handleShow = () => {setShow(!show)}
+  
 
   
+
 
   function showCartEntries(): JSX.Element {
     const subtotalArray: number[] = []
     let totalItemCost = 0
     let foodList = []
-    for (const [k,v] of Object.entries(foodQuantity)){
-      totalItemCost =(Number(v.price)) * v.quantity
-      subtotalArray.push(totalItemCost)
+    if (Object.entries(foodQuantity).length === 0){
       foodList.push(
-        <div style={{display:'flex', justifyContent:'space-between', paddingBottom:'4%'}}>
-          <h3 style={{display:'inline-block'}}>{v.quantity}  {k}</h3>
-          <h6 style={{display:'inline-block', paddingTop:'1.5%'}}>{totalItemCost.toFixed(2)}</h6>
+        <div>
+          <h1>Your cart is empty</h1>
         </div>
       )
+    } else {
+      for (const [k,v] of Object.entries(foodQuantity)){
+        totalItemCost =(Number(v.price)) * v.quantity
+        subtotalArray.push(totalItemCost)
+        foodList.push(
+          <div style={{display:'flex', justifyContent:'space-between', paddingBottom:'4%'}}>
+            <h3 style={{display:'inline-block'}}>{v.quantity}  {k}</h3>
+            <h6 style={{display:'inline-block', paddingTop:'1.5%'}}>{totalItemCost.toFixed(2)}</h6>
+          </div>
+        )
+      }
     }
     function calculateSubtotal (priceList: number[]):number {
       return priceList.reduce((prevVal, curval)=>  prevVal + curval, 0)
     }
+
     
+
     return(
       <div>
         {foodList}
@@ -77,7 +89,7 @@ const ShoppingCart: React.FC<Props> = ({
             <Button style={{display:'inline-block'}} variant="secondary" onClick={handleShow}>
               Close
             </Button>
-            <Button style={{display:'inline-block'}} variant="primary" onClick={handleShow}>
+            <Button  href='/checkout' style={{display:'inline-block'}} variant="primary">
               Check Out
             </Button>
           </Modal.Footer>

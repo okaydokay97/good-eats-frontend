@@ -20,9 +20,9 @@ const Order: React.FC = () => {
     <div style={{paddingTop:'1%'}}>
       <h1 style={{textAlign: 'center'}}>Order</h1>
       <div style={{display:'flex', justifyContent:'right', paddingRight:'2.5%'}}>
-        <Button onClick={handleShow}>
-          <MdOutlineShoppingBag style={{fontSize:'3.5em'}}/>
-          <p>{totalItems}</p>
+        <Button style={{position:'absolute'}} onClick={handleShow}>
+          <MdOutlineShoppingBag style={{fontSize:'3.5em', position:'relative', zIndex:1}}/>
+          <p style={{position:'relative',zIndex:2}}>{totalItems}</p>
         </Button>
       </div>
       <>

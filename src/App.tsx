@@ -3,7 +3,6 @@ import {
   Routes,
   Route,
   BrowserRouter as Router,
-  Link,
   Navigate
 } from 'react-router-dom'
 import Welcome from './Components/Welcome'
@@ -13,6 +12,7 @@ import Order from './Components/Order'
 import Header from'./Components/Header'
 import Login from './Components/Login';
 import Signup from './Components/Signup'
+import Checkout from './Components/Checkout';
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
             <Route path='/order' element={<Order/>} />
             <Route path='/login' element={<Login/>} />
             <Route path='/signup' element={<Signup/>} />
+            <Route path='/checkout' element={<Checkout/>} />
           </Routes>
         </div>
       </Router>
