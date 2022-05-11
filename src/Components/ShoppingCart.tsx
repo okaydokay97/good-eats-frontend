@@ -1,0 +1,89 @@
+import React, { useState } from 'react'
+import { Modal, Button, Card } from 'react-bootstrap'
+
+interface FoodQuantity {
+  [key: string]: {
+    quantity: number,
+    price: number
+  }
+}
+
+interface Props {
+  foodQuantity: FoodQuantity
+  totalItems: number
+  setFoodQuantity: React.Dispatch<React.SetStateAction<FoodQuantity>>
+  setTotalItems: React.Dispatch<React.SetStateAction<number>>
+  show: boolean
+  setShow: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+
+
+
+const ShoppingCart: React.FC<Props> = ({
+  foodQuantity,
+  totalItems,
+  setFoodQuantity,
+  setTotalItems,
+  show,
+  setShow
+}) => {
+
+  const handleShow = () => {setShow(!show)}
+
+  
+
+  function showCartEntries(): JSX.Element {
+    const subtotalArray: number[] = []
+    let totalItemCost = 0
+    let foodList = []
+    for (const [k,v] of Object.entries(foodQuantity)){
+      totalItemCost =(Number(v.price)) * v.quantity
+      subtotalArray.push(totalItemCost)
+      foodList.push(
+        <div>
+          <h1>{k}</h1>
+          <p>{totalItemCost.toFixed(2)}</p>
+        </div>
+      )
+    }
+    function calculateSubtotal (priceList: number[]):number {
+      return priceList.reduce((prevVal, curval)=>  prevVal + curval, 0)
+    }
+    
+    return(
+      <div>
+        {foodList}
+        <br/>
+        <p>Subtotal: {calculateSubtotal(subtotalArray).toFixed(2)}</p>
+      </div>
+    )
+  }
+
+  return (
+    
+    <div>
+      <Modal show={show} onHide={handleShow} >
+          <Modal.Header closeButton>
+            <Modal.Title>Shopping Cart</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <>
+              {showCartEntries()}
+            </>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleShow}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleShow}>
+              Check Out
+            </Button>
+          </Modal.Footer>
+        </Modal>
+  
+    </div>
+  )
+}
+
+export default ShoppingCart
