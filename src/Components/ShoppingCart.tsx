@@ -41,9 +41,9 @@ const ShoppingCart: React.FC<Props> = ({
       totalItemCost =(Number(v.price)) * v.quantity
       subtotalArray.push(totalItemCost)
       foodList.push(
-        <div>
-          <h1>{k}</h1>
-          <p>{totalItemCost.toFixed(2)}</p>
+        <div style={{display:'flex', justifyContent:'space-between', paddingBottom:'4%'}}>
+          <h3 style={{display:'inline-block'}}>{v.quantity}  {k}</h3>
+          <h6 style={{display:'inline-block', paddingTop:'1.5%'}}>{totalItemCost.toFixed(2)}</h6>
         </div>
       )
     }
@@ -55,7 +55,8 @@ const ShoppingCart: React.FC<Props> = ({
       <div>
         {foodList}
         <br/>
-        <p>Subtotal: {calculateSubtotal(subtotalArray).toFixed(2)}</p>
+        
+        <p style={{borderTop:'3px dashed grey', textAlign:'right', paddingTop:'2%'}}>Subtotal: {calculateSubtotal(subtotalArray).toFixed(2)}</p>
       </div>
     )
   }
@@ -72,11 +73,11 @@ const ShoppingCart: React.FC<Props> = ({
               {showCartEntries()}
             </>
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleShow}>
+          <Modal.Footer style={{display:'flex', justifyContent:'space-between'}}>
+            <Button style={{display:'inline-block'}} variant="secondary" onClick={handleShow}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleShow}>
+            <Button style={{display:'inline-block'}} variant="primary" onClick={handleShow}>
               Check Out
             </Button>
           </Modal.Footer>
