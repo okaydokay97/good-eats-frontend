@@ -11,6 +11,7 @@ export interface MenuItemInterface {
 interface RestaurantInfo {
   id: number,
   restaurantName: string,
+  cuisine: string[],
   menu: [
     {[course: string]: Food}
   ],
@@ -23,6 +24,7 @@ interface RestaurantInfo {
 let restaurant1 ={
   id:1,
   restaurantName: 'Mama Mia Pizzaria',
+  cusine: ['pizza', 'italian'],
   menu: [
     {'appetizers': [
       {name: 'Bruschetta', price: 6.50},
