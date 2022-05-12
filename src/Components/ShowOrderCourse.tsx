@@ -67,14 +67,14 @@ const ShowOrderCourse: React.FC<Props> = ({foodQuantity, setFoodQuantity, setTot
                 className="mb-2"
               >
             <Card.Header>
-              <ul style={{listStyleType:'none', display:'flex', justifyContent:'space-between', padding:0}}>
-                <li style={{display:'inline-block'}}>{food.name}</li>
-                <li id={`${food.name} price`}style={{display:'inline-block'}}>{food.price.toFixed(2)}</li>
+              <ul className="centered-list no-bullets">
+                <li className = 'inline'>{food.name}</li>
+                <li id={`${food.name} price`} className='inline'>{food.price.toFixed(2)}</li>
               </ul>
-              <div id={`${food.name}`} style={{display:'flex', justifyContent:'space-between'}}>
-                <Button onClick={handleClick} style={{height:'3rem', width:'3rem', borderRadius:'100%'}}>-</Button>
+              <div id={`${food.name}`} className='centered-list'>
+                <Button className='quantity-button 'onClick={handleClick} >-</Button>
                 <h1>{food.name in foodQuantity ? foodQuantity[food.name].quantity : 0}</h1>
-                <Button onClick={handleClick} style={{height:'3rem', width:'3rem', borderRadius:'100%'}}>+</Button>
+                <Button className='quantity-button' onClick={handleClick}>+</Button>
               </div>
             </Card.Header>
           </Card>
@@ -118,10 +118,10 @@ const ShowOrderCourse: React.FC<Props> = ({foodQuantity, setFoodQuantity, setTot
               className="mb-2"
               onClick={(e:any) => {setShownCourse(e.currentTarget.id)}}
             >
-              <Card.Header style={{height:'5rem', display:'flex', flexDirection:'column',justifyContent:'center'}}>
-                <ul style={{listStyleType:'none', display:'flex', justifyContent:'space-between'}}>
-                  <li style={{display:'inline-block'}}><b>{k.toUpperCase()}</b></li>
-                  <li style={{display:'inline-block'}}> {'>'} </li>
+              <Card.Header className='centered-list' style={{height:'5rem', flexDirection:'column',}}>
+                <ul className='centered-list no-bullets' style={{listStyleType:'none'}}>
+                  <li className="inline "><b>{k.toUpperCase()}</b></li>
+                  <li className="inline"> {'>'} </li>
                 </ul>
               </Card.Header>
             </Card>

@@ -50,9 +50,9 @@ const ShoppingCart: React.FC<Props> = ({
         totalItemCost =(Number(v.price)) * v.quantity
         subtotalArray.push(totalItemCost)
         foodList.push(
-          <div style={{display:'flex', justifyContent:'space-between', paddingBottom:'4%'}}>
-            <h3 style={{display:'inline-block'}}>{v.quantity}  {k}</h3>
-            <h6 style={{display:'inline-block', paddingTop:'1.5%'}}>{totalItemCost.toFixed(2)}</h6>
+          <div className='centered-list' style={{paddingBottom:'4%'}}>
+            <h3 className='inline'>{v.quantity}  {k}</h3>
+            <h6 className='inline' style={{ paddingTop:'1.5%'}}>{totalItemCost.toFixed(2)}</h6>
           </div>
         )
       }
@@ -85,11 +85,12 @@ const ShoppingCart: React.FC<Props> = ({
               {showCartEntries()}
             </>
           </Modal.Body>
+          {/* Need to figure out how to abstract below style */}
           <Modal.Footer style={{display:'flex', justifyContent:'space-between'}}>
-            <Button style={{display:'inline-block'}} variant="secondary" onClick={handleShow}>
+            <Button className='inline' variant="secondary" onClick={handleShow}>
               Close
             </Button>
-            <Button  href='/checkout' style={{display:'inline-block'}} variant="primary">
+            <Button  href='/checkout' className='inline' variant="primary">
               Check Out
             </Button>
           </Modal.Footer>
