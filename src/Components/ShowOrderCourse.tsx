@@ -1,6 +1,6 @@
 import React, { useState, useEffect, } from "react";
 import { Card, ListGroup, Button } from 'react-bootstrap'
-import {Foods, MenuItemInterface, menuItems} from '../test data/menuInfo'
+import {Foods, MenuItemInterface, menuItems} from '../test data/restaurantInfo'
 
 export interface FoodQuantity {
   [key: string]: {

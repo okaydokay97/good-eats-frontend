@@ -1,4 +1,4 @@
-import {Foods, MenuItemInterface, menuItems} from '../test data/menuInfo'
+import {Foods, MenuItemInterface, menuItems} from '../test data/restaurantInfo'
 import React from 'react'
 import {Card, ListGroup, Button} from 'react-bootstrap'
 
