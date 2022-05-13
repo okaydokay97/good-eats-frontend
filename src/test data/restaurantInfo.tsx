@@ -8,7 +8,7 @@ export interface MenuItemInterface {
   desserts: Foods
 }
 
-interface RestaurantInfo {
+export interface RestaurantInfo {
   id: number,
   restaurantName: string,
   cuisine: string[],
