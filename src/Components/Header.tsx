@@ -1,14 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators, State } from "../state";
+
+
 
 const Header: React.FC = () => {
+  const restaurant = useSelector((state: State) => state.restaurant)
   return(
     <div>
-      <h1 style={{
-
-        paddingTop: '1.5%',
-        paddingLeft: '1.5%'
-      }}>Mama Mia Pizzaria</h1>
-
+      <h1 id='good-eats-header'>Good Eats</h1>
     </div>
   )
   

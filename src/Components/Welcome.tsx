@@ -1,13 +1,15 @@
-
 import React from "react";
-import { Carousel } from 'react-bootstrap';
 import PizzaCarousel from './PizzaCarousel'
-const util = require('util')
+import { useSelector } from "react-redux";
+import { State } from "../state";
 
 const Welcome: React.FC = () => {
+
+  const restaurantName = useSelector((state:State) => state.restaurant.restaurantName)
+  
   return (
     <div>
-      <h1>Welcome</h1>
+      <h1>{restaurantName}</h1>
       <PizzaCarousel />
     </div>
   )

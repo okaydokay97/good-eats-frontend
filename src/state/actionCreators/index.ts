@@ -1,5 +1,5 @@
 import { ActionType } from "../actionTypes"
-import { RestaurantInfo } from "../actions"
+import { RestaurantInfo, Cart } from "../actions"
 import { Dispatch } from "redux"
 import { Action } from '../actions'
 
@@ -17,6 +17,24 @@ export const removeRestaurant = () => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.REMOVERESTAURANT
+    })
+  }
+}
+
+export const addItemToCart = (cart: Cart) => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.ADDITEMTOCART,
+      payload: cart
+    })
+  }
+}
+
+export const removeItemFromCart = (cart: Cart) => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.REMOVEITEMFROMCART,
+      payload: cart
     })
   }
 }

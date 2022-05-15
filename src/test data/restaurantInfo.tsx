@@ -1,61 +1,62 @@
-export type Foods = {course:string, name:string, price:number}[]
-type Food = {name:string, price:number}[]
+export type Food = {course:string, name:string, price:number}[]
+export type Foods = {name:string, price:number}[]
+
+export interface RestaurantMenu {[course: string]: Foods}
 
 export interface MenuItemInterface {
-  appetizers: Foods,
-  pastas: Foods,
-  pizzas: Foods,
-  desserts: Foods
+  appetizers: Food,
+  pastas: Food,
+  pizzas: Food,
+  desserts: Food
 }
 
 export interface RestaurantInfo {
   id: number,
   restaurantName: string,
   cuisine: string[],
-  menu: [
-    {[course: string]: Food}
-  ],
+  menu: RestaurantMenu,
   address: string,
   pictures?: string,
   deliver:boolean,
   adminUserId:number
 }
 
-let restaurant1 ={
+export let restaurant1: RestaurantInfo ={
   id:1,
   restaurantName: 'Mama Mia Pizzaria',
-  cusine: ['pizza', 'italian'],
-  menu: [
-    {'appetizers': [
+  cuisine: ['pizza', 'italian'],
+  menu: {
+    'Appetizers': [
       {name: 'Bruschetta', price: 6.50},
       {name: 'Calamari', price: 12.00},
       {name: 'Fried Mozzerela', price: 8.25},
       {name: 'Garlic Bread', price: 6.50},
       {name: 'Onion Rings', price: 7.50},
       {name: 'Fried Mushrooms', price: 8.00}
-    ]},
-    {'pastas': [
+    ],
+    'Pastas': [
       {name: 'Cacio é pepe', price: 10.25},
       {name: 'Meat Lasagna', price: 13.50},
       {name: 'Cheese Ravioli', price: 12.00},
       {name: 'Penne Pasta W/ Grilled Italian Sausage', price: 14.50},
       {name: 'Sphagetti and Meatballs', price: 11.25}
-    ]},
-    {'pizzas': [
+    ],
+    'Pizzas': [
       {name: 'Margherita', price: 16.00},
       {name: 'Four Cheese', price: 17.00},
       {name: 'Hawaiian', price: 19.25},
       {name: 'Chicago Style', price: 18.50},
       {name: 'White Pizza', price: 14.50},
       {name: 'Vegitarian', price: 15.00}
-    ]},
-    {'desserts': [
+    ],
+    'Desserts': [
       {name: 'Cannoli(6)', price: 6.00},
       {name: 'Tiramisu', price: 7.00},
       {name: 'Chocolate Cake', price: 8.25},
       {name: 'Vanilla Gelato', price: 6.50},
-    ]}
-  ],
+    ]
+  }
+  ,
   address: '123 Main St.',
   deliver:false,
   adminUserId: 1

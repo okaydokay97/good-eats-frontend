@@ -1,60 +1,89 @@
-import React, { useState, useEffect, } from "react";
+import React, { useState} from "react";
 import { Card, ListGroup, Button } from 'react-bootstrap'
-import {Foods, MenuItemInterface, menuItems} from '../test data/restaurantInfo'
-
-export interface FoodQuantity {
-  [key: string]: {
-    quantity: number,
-    price: number
-  }
-}
-
-export interface Props {
-  foodQuantity: FoodQuantity
-  totalItems: number
-  setFoodQuantity: React.Dispatch<React.SetStateAction<FoodQuantity>>
-  setTotalItems: React.Dispatch<React.SetStateAction<number>>
-}
+import {Foods, RestaurantMenu} from '../test data/restaurantInfo'
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators, State } from "../state";
+import { bindActionCreators } from "redux";
+import { Cart } from "../state/actions";
 
 
 
-const ShowOrderCourse: React.FC<Props> = ({foodQuantity, setFoodQuantity, setTotalItems, totalItems}) => {
+
+
+
+const ShowOrderCourse: React.FC = () => {
   
   
   const [shownCourse,  setShownCourse] = useState<string>('')
+  const restaurantMenu = useSelector((state: State) => state.restaurant.menu)
+  const cart = useSelector((state:State) => state.cart)
+  const dispatch = useDispatch()
+  const { addItemToCart, removeItemFromCart } = bindActionCreators(actionCreators, dispatch)
   
   
   
 
 
-  function handleClick(e: any){
+  function handleClick(e:any, food:any){
+    let originalQuantity = cart[food.name] ? cart[food.name].quantity : 0
     let button:any = e.target
-    if (button.innerText === '-' && Number(button.nextSibling.innerText) > 0){
-      setFoodQuantity({
-        ...foodQuantity,
-        [button.parentElement.id]: {
-          quantity: (button.nextSibling.innerText = Number(button.nextSibling.innerText) - 1),
-          price: document.getElementById(`${button.parentElement.id} price`)?.innerText
-        }
-      })
-      setTotalItems(totalItems - 1)
+    if (button.innerText === '-' && originalQuantity > 0){
+      let removedItem = {[food.name]: {quantity: (originalQuantity - 1), price:food.price}}
+      removeItemFromCart(removedItem)
       
     }
     if (button.innerText === '+'){
-      setFoodQuantity({
-        ...foodQuantity,
-        [button.parentElement.id]: {
-          quantity: (button.previousSibling.innerText = Number(button.previousSibling.innerText) + 1),
-          price: document.getElementById(`${button.parentElement.id} price`)?.innerText
-        }
-      })
-      setTotalItems(totalItems + 1)
+      let addedItem = {[food.name]: {quantity: (originalQuantity + 1), price:food.price}}
+      addItemToCart(addedItem)
     }
   }
 
-  function getFoods(foodsArray:Foods): any[] {
+  function showCoursesOrFoods (menu:RestaurantMenu) {
+    let courseList: any[] =[]
+    let foodsList: any[] = []
+    if (shownCourse !== '') {
+      for (const [course, foods] of Object.entries(menu)) {
+        if (course  === shownCourse) {
+          foodsList.push(
+            getFoods(course, foods)
+          )
+        }
+      }
+      return(
+        <div >
+          <Button  onClick={() => {setShownCourse('')}}>Return to Courses</Button>
+          {foodsList}
+        </div>
+      )
+    } else {
+      for (const [course] of Object.entries(menu)) {
+        
+        courseList.push(
+            <Card
+              id={`${course}`}
+              bg='light'
+              key='Light'
+              text='dark'
+              style={{ width: '30rem', margin:'auto', cursor:'pointer' }}
+              className="mb-2"
+              onClick={(e:any) => {setShownCourse(e.currentTarget.id)}}
+            >
+              <Card.Header className='centered-list' style={{height:'5rem', flexDirection:'column',}}>
+                <ul className='centered-list no-bullets' style={{listStyleType:'none'}}>
+                  <li className="inline "><b>{course}</b></li>
+                  <li className="inline"> {'>'} </li>
+                </ul>
+              </Card.Header>
+            </Card>
+        )
+      }
+    }
+    return courseList   
+  }
+
+  function getFoods(course:string, foodsArray:Foods): any[] {
     let listFood = foodsArray.map((food) => {
-      if (food.course === shownCourse){
+      if (course === shownCourse){
 
         return(
     
@@ -72,9 +101,9 @@ const ShowOrderCourse: React.FC<Props> = ({foodQuantity, setFoodQuantity, setTot
                 <li id={`${food.name} price`} className='inline'>{food.price.toFixed(2)}</li>
               </ul>
               <div id={`${food.name}`} className='centered-list'>
-                <Button className='quantity-button 'onClick={handleClick} >-</Button>
-                <h1>{food.name in foodQuantity ? foodQuantity[food.name].quantity : 0}</h1>
-                <Button className='quantity-button' onClick={handleClick}>+</Button>
+                <Button className='quantity-button' onClick={(e) => handleClick(e, food)}>-</Button>
+                <h1>{food.name in cart ? cart[food.name].quantity : 0}</h1>
+                <Button className='quantity-button' onClick={(e) => handleClick(e, food)}>+</Button>
               </div>
             </Card.Header>
           </Card>
@@ -87,53 +116,9 @@ const ShowOrderCourse: React.FC<Props> = ({foodQuantity, setFoodQuantity, setTot
   }
   
   
-
-  function showCoursesOrFoods (menu:MenuItemInterface) {
-    let courseList: any[] =[]
-    let foodsList: any[] = []
-    if (shownCourse !== '') {
-      for (const [k,v] of Object.entries(menu)) {
-        if (k === shownCourse) {
-          foodsList.push(
-            getFoods(v)
-          )
-        }
-      }
-      return(
-        <div >
-          <Button  onClick={() => {setShownCourse('')}}>Return to Courses</Button>
-          {foodsList}
-        </div>
-      )
-    } else {
-      for (const [k,v] of Object.entries(menu)) {
-        
-        courseList.push(
-            <Card
-              id={`${k}`}
-              bg='light'
-              key='Light'
-              text='dark'
-              style={{ width: '30rem', margin:'auto', cursor:'pointer' }}
-              className="mb-2"
-              onClick={(e:any) => {setShownCourse(e.currentTarget.id)}}
-            >
-              <Card.Header className='centered-list' style={{height:'5rem', flexDirection:'column',}}>
-                <ul className='centered-list no-bullets' style={{listStyleType:'none'}}>
-                  <li className="inline "><b>{k.toUpperCase()}</b></li>
-                  <li className="inline"> {'>'} </li>
-                </ul>
-              </Card.Header>
-            </Card>
-        )
-      }
-    }
-    return courseList   
-  }
-  
   return ( 
     <div>
-      {showCoursesOrFoods(menuItems)}
+      {showCoursesOrFoods(restaurantMenu)}
     </div>
   )
 }
