@@ -1,9 +1,4 @@
-export interface User {
-  id: number,
-  email: string,
-  password: string,
-  admin: boolean
-}
+import { User } from'../state/actions'
 
 let user1:User = {
   id: 1,

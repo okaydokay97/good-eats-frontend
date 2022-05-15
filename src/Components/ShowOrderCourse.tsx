@@ -30,7 +30,6 @@ const ShowOrderCourse: React.FC = () => {
     if (button.innerText === '-' && originalQuantity > 0){
       let removedItem = {[food.name]: {quantity: (originalQuantity - 1), price:food.price}}
       removeItemFromCart(removedItem)
-      
     }
     if (button.innerText === '+'){
       let addedItem = {[food.name]: {quantity: (originalQuantity + 1), price:food.price}}
@@ -62,7 +61,7 @@ const ShowOrderCourse: React.FC = () => {
             <Card
               id={`${course}`}
               bg='light'
-              key='Light'
+              key={course}
               text='dark'
               style={{ width: '30rem', margin:'auto', cursor:'pointer' }}
               className="mb-2"
@@ -90,7 +89,7 @@ const ShowOrderCourse: React.FC = () => {
           <Card
                 id={`${food.name}`}
                 bg='light'
-                key='Light'
+                key={food.name}
                 text='dark'
                 style={{ width: '20rem', margin:'auto' }}
                 className="mb-2"

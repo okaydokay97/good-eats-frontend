@@ -13,7 +13,7 @@ function createMenuCards (menu: RestaurantMenu) {
     courseList.push(
       <Card
         bg='light'
-        key='Light'
+        key={course}
         text='dark'
         style={{ width: '30rem', margin:'auto'}}
         className="mb-2"
@@ -38,7 +38,7 @@ export function getFoods(foodsArray:Foods): any[] {
   
   let listFood = foodsArray.map((food) => {
     return(
-      <ListGroup.Item>
+      <ListGroup.Item key={food.name}style={{borderWidth:'1px'}}>
         <ul className='centered-list no-bullets'>
           <li className='inline'>{food.name}</li>
           <li className='inline'>{food.price.toFixed(2)}</li>

@@ -1,7 +1,5 @@
-import { keyboard } from "@testing-library/user-event/dist/keyboard"
 import { Action, Cart } from "../actions"
 import { ActionType } from "../actionTypes"
-
 
 
 

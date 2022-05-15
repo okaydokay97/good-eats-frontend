@@ -20,6 +20,13 @@ export interface RestaurantInfo {
   adminUserId:number
 }
 
+export interface User {
+  id: number,
+  email: string,
+  password: string,
+  admin: boolean
+}
+
 
 
 interface AddRestaurantAction {
@@ -40,5 +47,22 @@ interface RemoveItemFromCartAction{
   type: ActionType.REMOVEITEMFROMCART,
   payload: Cart
 }
-export type Action = AddRestaurantAction | RemoveRestaurantAction | AddItemToCartAction | RemoveItemFromCartAction
+
+interface AddUser {
+  type: ActionType.ADDUSER
+  payload: User
+}
+
+interface RemoveUser {
+  type: ActionType.REMOVEUSER
+}
+
+export type Action = (
+  AddRestaurantAction | 
+  RemoveRestaurantAction |
+  AddItemToCartAction | 
+  RemoveItemFromCartAction |
+  AddUser |
+  RemoveUser
+)
 

@@ -40,3 +40,8 @@ Card > div .centered-list{
   text-align: right;
   padding-top: 2%;
 }
+
+Modal .spaced-list{
+  display: flex;
+  justify-content: space-between;
+}
