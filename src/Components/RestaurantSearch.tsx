@@ -18,6 +18,7 @@ const RestaurantSearch = () => {
   const dispatch = useDispatch()
   const { addRestaurant } = bindActionCreators(actionCreators, dispatch)
   const navigate = useNavigate()
+  
 
   function handleClick() {
     addRestaurant(restaurant1)
