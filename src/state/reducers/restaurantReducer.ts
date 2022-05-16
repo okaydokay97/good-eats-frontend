@@ -3,18 +3,17 @@ import { ActionType } from '../actionTypes'
 import { restaurant1 } from '../../test data/restaurantInfo'
 
 
-// const initialState: RestaurantInfo = {
-//   id: 0,
-//   restaurantName: '',
-//   cuisine:[],
-//   menu: [{}],
-//   address:'',
-//   pictures: '',
-//   deliver:false,
-//   adminUserId:0
-// }
+const initialState: RestaurantInfo = {
+  id: 0,
+  restaurantName: '',
+  cuisine:[],
+  menu: {},
+  address:'',
+  pictures: '',
+  deliver:false,
+  adminUserId:0
+}
 
-const initialState: RestaurantInfo = restaurant1
 
 
 const restaurantReducer = (state: RestaurantInfo = initialState, action: Action) => {

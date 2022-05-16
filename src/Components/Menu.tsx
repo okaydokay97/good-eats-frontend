@@ -3,10 +3,12 @@ import React from 'react'
 import {Card, ListGroup, Button} from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { State } from '../state'
+import { useNavigate } from 'react-router-dom'
 
 
 
 function createMenuCards (menu: RestaurantMenu) {
+
   let courseList: any[] =[]
   for (const [course,foods] of Object.entries(menu)) {
     
@@ -56,18 +58,23 @@ export function getFoods(foodsArray:Foods): any[] {
 
 const Menu: React.FC = () => {
 
-  const restaurantMenu = useSelector((state: State) => state.restaurant.menu)
+  const navigate = useNavigate()
+  const restaurant = useSelector((state: State) => state.restaurant)
 
+  function handleClick() {
+    let path = `/${restaurant.id}/order`
+    navigate(path)
+  }
 
   return (
     <div style={{textAlign:'center', margin:'auto'}}>
       <h1 style={{padding:'2%'}}>Menu</h1>
-      <Button href='/order'>Order Now</Button>
+      <Button onClick={handleClick}>Order Now</Button>
       <br/><br/>
       <>
-        {createMenuCards(restaurantMenu)}
+        {createMenuCards(restaurant.menu)}
       </>
-      <Button href='/order'>Order Now</Button>
+      <Button onClick={handleClick}>Order Now</Button>
       <br/><br/>
     </div>
   )

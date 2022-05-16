@@ -3,7 +3,6 @@ import { ActionType } from "../actionTypes"
 
 
 
-
 const initialState:Cart = {}
 
 const cartReducer = (state: Cart = initialState, action: Action ): Cart => {

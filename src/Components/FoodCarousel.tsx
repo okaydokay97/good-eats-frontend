@@ -5,13 +5,15 @@ import React from "react";
 import {Carousel} from 'react-bootstrap'
 
 
-const PizzaCarousel: React.FC = () => {
+const FoodCarousel: React.FC = () => {
   return(
-    <Carousel>
+    <Carousel style={{width:'50%', margin:'auto'}}>
     <Carousel.Item>
       <img
-      style={{width: '50vh',
-      height: '50vh'}}
+      style={{
+        width: '50vh',
+        height: '50vh'
+      }}
         className="d-block w-100"
         src={pizza1}
         alt="First slide"
@@ -21,7 +23,7 @@ const PizzaCarousel: React.FC = () => {
         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
       </Carousel.Caption>
     </Carousel.Item>
-    <Carousel.Item>
+    {/* <Carousel.Item>
       <img
       style={{width: '50% !important',
       height: '50vh'}}
@@ -47,10 +49,10 @@ const PizzaCarousel: React.FC = () => {
       <Carousel.Caption>
         <h3>Third slide label</h3>
         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-      </Carousel.Caption>
-    </Carousel.Item>
+      </Carousel.Caption> */}
+    {/* </Carousel.Item> */}
   </Carousel>
   )
 }
 
-export default PizzaCarousel
+export default FoodCarousel

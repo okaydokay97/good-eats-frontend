@@ -24,7 +24,7 @@ export interface RestaurantInfo {
 export let restaurant1: RestaurantInfo ={
   id:1,
   restaurantName: 'Mama Mia Pizzaria',
-  cuisine: ['pizza', 'italian'],
+  cuisine: ['Pizza', 'Italian'],
   menu: {
     'Appetizers': [
       {name: 'Bruschetta', price: 6.50},
