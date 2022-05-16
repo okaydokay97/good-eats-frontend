@@ -48,6 +48,10 @@ interface RemoveItemFromCartAction{
   payload: Cart
 }
 
+interface ClearItemsFromCartAction{
+  type: ActionType.CLEARITEMSFROMCART,
+}
+
 interface AddUser {
   type: ActionType.ADDUSER
   payload: User
@@ -62,6 +66,7 @@ export type Action = (
   RemoveRestaurantAction |
   AddItemToCartAction | 
   RemoveItemFromCartAction |
+  ClearItemsFromCartAction |
   AddUser |
   RemoveUser
 )

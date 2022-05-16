@@ -3,6 +3,7 @@ export enum ActionType {
   REMOVERESTAURANT = 'removeRestaurant',
   ADDITEMTOCART = 'addItemToCart',
   REMOVEITEMFROMCART = 'removeItemFromCart',
+  CLEARITEMSFROMCART = 'clearItemsFromCart',
   ADDUSER = 'addUser',
   REMOVEUSER = 'removeUser'
 }

@@ -26,7 +26,6 @@ import {State} from './state'
 function App() {
 
   const selectedRestaurant = useSelector((state:State) => state.restaurant).id
-  console.log(selectedRestaurant)
   return (
     <div className="App">
       <Router>

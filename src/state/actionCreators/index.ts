@@ -39,6 +39,14 @@ export const removeItemFromCart = (cart: Cart) => {
   }
 }
 
+export const clearItemsFromCart = () => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.CLEARITEMSFROMCART
+    })
+  }
+}
+
 export const addUser = (user: User) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({

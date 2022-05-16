@@ -1,11 +1,12 @@
 import pizza1 from '../photos/pizza1.jpg'
-import pizza2 from '../photos/pizza2.jpg'
-import pizza3 from '../photos/pizza3.jpg'
+import photo4 from '../photos/photo4.jpeg'
 import React from "react";
 import {Carousel} from 'react-bootstrap'
 
-
-const FoodCarousel: React.FC = () => {
+interface Props {
+  name: string
+}
+const FoodCarousel: React.FC<Props> = ({name}) => {
   return(
     <Carousel style={{width:'50%', margin:'auto'}}>
     <Carousel.Item>
@@ -15,13 +16,9 @@ const FoodCarousel: React.FC = () => {
         height: '50vh'
       }}
         className="d-block w-100"
-        src={pizza1}
+        src={name === 'Ramen Party'? photo4 : pizza1}
         alt="First slide"
       />
-      <Carousel.Caption>
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </Carousel.Caption>
     </Carousel.Item>
     {/* <Carousel.Item>
       <img
