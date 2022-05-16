@@ -13,8 +13,10 @@ const Header: React.FC = () => {
   const dispatch = useDispatch()
   const [searchBar, setSearchBar] = useState<string>('')
   const navigate = useNavigate()
+  const { removeRestaurant } = bindActionCreators(actionCreators, dispatch)
 
   function handleClick(){
+    removeRestaurant()
     let path = '/'
     navigate(path)
   } 
@@ -42,7 +44,7 @@ const Header: React.FC = () => {
           />
           <Button type='submit' variant="outline-secondary" ><FaSearch/></Button>
       </Form>
-      <Button href='/login' style={{height:'2.5em', alignSelf:'center'}}>Login/Signup</Button>
+      <Button href='/login' style={{height:'2.5em', alignSelf:'center', marginTop:'.8%', marginRight:'1%'}}>Login/Signup</Button>
     </div>
   )
   

@@ -1,16 +1,13 @@
 import React from "react";
-import {
-  Link,
-  BrowserRouter as Router
-} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { useSelector } from "react-redux";
-import { State } from "../state";
+import { State } from "../../state";
 
 
 
 
-const Navbar: React.FC = () => {
+const RestaurantNavbar: React.FC = () => {
   const selectedRestaurant = useSelector((state:State) => state.restaurant).id
   return (
 
@@ -32,4 +29,4 @@ const Navbar: React.FC = () => {
   )
 }
 
-export default Navbar
+export default RestaurantNavbar

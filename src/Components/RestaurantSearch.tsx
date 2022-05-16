@@ -31,7 +31,7 @@ const RestaurantSearch = () => {
   }
 
   return(
-    <div style={{display:'flex', justifyContent:'space-evenly'}}>
+    <div style={{display:'flex', justifyContent:'space-evenly', paddingTop:'3%'}}>
       <Card 
         onClick={() => {handleClick(restaurant1)}}
         style={{ width: '18rem', cursor:'pointer' }}>

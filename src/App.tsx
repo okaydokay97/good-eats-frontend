@@ -8,7 +8,7 @@ import {
   Navigate
 } from 'react-router-dom'
 import Welcome from './Components/Welcome'
-import Navbar from './Navigation/Navbar';
+import RestaurantNavbar from './Components/Navigation/RestaurantNavbar';
 import Menu from './Components/Menu'
 import Order from './Components/Order'
 import Header from'./Components/Header'
@@ -18,20 +18,21 @@ import Checkout from './Components/Checkout';
 import RestaurantSearch from './Components/RestaurantSearch';
 import { useSelector } from 'react-redux';
 import {State} from './state'
+import RestaurantSearchNavbar from './Components/Navigation/RestaurantSearchNavbar';
+import { useState } from 'react';
 
 
 
 
 
 function App() {
-
   const selectedRestaurant = useSelector((state:State) => state.restaurant).id
   return (
     <div className="App">
       <Router>
       <Header />
         <div>
-          {selectedRestaurant? <Navbar/> : null}
+          {selectedRestaurant? <RestaurantNavbar/> : <RestaurantSearchNavbar />}
           <Routes>
             <Route path={`/${selectedRestaurant}/home`} element={<Welcome/>}/>
             <Route path='/' element={<RestaurantSearch />}/>
