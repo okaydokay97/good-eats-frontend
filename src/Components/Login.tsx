@@ -40,8 +40,15 @@ const Login: React.FC = () => {
       })
     })
     .then(response => response.json())
-    .then(user => addUser(user))
-    navigate('/')
+    .then(user => {
+      if (user.message) {
+        alert(user.message)
+      } else {
+        addUser(user)
+        navigate('/')
+      }
+    })
+    
   }
 
   return (

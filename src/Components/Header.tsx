@@ -13,12 +13,20 @@ const Header: React.FC = () => {
   const dispatch = useDispatch()
   const [searchBar, setSearchBar] = useState<string>('')
   const navigate = useNavigate()
-  const { removeRestaurant } = bindActionCreators(actionCreators, dispatch)
+  const { removeRestaurant, removeUser } = bindActionCreators(actionCreators, dispatch)
+  const user = useSelector((state:State) => state.user)
 
-  function handleClick(){
-    removeRestaurant()
-    let path = '/'
-    navigate(path)
+  function handleClick(e:any){
+    console.log(e.target)
+    if (e.target.id === 'login'){
+      navigate('/login')
+    } else if (e.target.id === 'logout'){
+      removeUser()
+      navigate('/login')
+    } else if ( e.target.id === 'goodEatsLogo'){
+      removeRestaurant()
+      navigate('/')
+    }
   } 
 
   function handleChange(e:any) {
@@ -30,9 +38,17 @@ const Header: React.FC = () => {
     console.log(searchBar)
   }
 
+  function displayLoginOrLogout(){
+    if (user.id === 0) {
+      return (<Button id="login" onClick={handleClick} style={{height:'2.5em', alignSelf:'center', marginTop:'.8%', marginRight:'1%'}}>Login/Signup</Button>)
+    } else {
+      return (<Button id='logout' onClick={handleClick} style={{height:'2.5em', alignSelf:'center', marginTop:'.8%', marginRight:'1%'}}>Logout</Button>)
+    }
+  }
+
   return(
     <div style={{display:'flex'}} >
-      <h1 style={{display:'inline-block', cursor:'pointer'}} onClick={handleClick} className='good-eats-header'>Good Eats</h1>
+      <h1 id='goodEatsLogo' style={{display:'inline-block', cursor:'pointer'}} onClick={handleClick} className='good-eats-header'>Good Eats</h1>
       <Form onSubmit={handleSubmit} style={{ display:'inline-block', height:'2.5em',margin:'auto', alignSelf:'end', marginBottom:'.8%'}}className="d-flex">
           <FormControl
             type="search"
@@ -44,7 +60,7 @@ const Header: React.FC = () => {
           />
           <Button type='submit' variant="outline-secondary" ><FaSearch/></Button>
       </Form>
-      <Button href='/login' style={{height:'2.5em', alignSelf:'center', marginTop:'.8%', marginRight:'1%'}}>Login/Signup</Button>
+      {displayLoginOrLogout()}
     </div>
   )
   
