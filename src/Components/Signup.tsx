@@ -13,6 +13,7 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [confirmPassword, setConfirmPassword] = useState<string>('')
+  const [admin, setAdmin] = useState<boolean>(false)
   const dispatch = useDispatch()
   const { addUser } = bindActionCreators( actionCreators, dispatch )
   const navigate = useNavigate()
@@ -28,6 +29,8 @@ const Signup: React.FC = () => {
       setPassword(e.target.value)
     } else if (e.target.id === 'confirm-password') {
       setConfirmPassword(e.target.value)
+    } else if (e.target.id === 'admin') {
+      setAdmin(!admin)
     }
   }
 
@@ -41,7 +44,7 @@ const Signup: React.FC = () => {
           email: email,
           name: `${firstName} ${lastName}`,
           password: password,
-          admin: false
+          admin: admin
         })
       })
       .then(response => response.json())
@@ -81,9 +84,17 @@ const Signup: React.FC = () => {
             <Form.Control type="password" id='confirm-password' placeholder="Confirm Password" />
           </Form.Group>
         </div>
+        <div className="centered-list" style={{paddingTop:'1%'}}>
           <Button variant="primary" type="submit">
-            Create Account
+              Create Account
           </Button>
+          <div className="form-check">
+            <input onClick={handleChange}className='form-check-input'type='checkbox' id='admin'/>
+            <label className="form-check-label" htmlFor='ownerId'>
+              Restaurant Owner
+            </label>
+          </div>
+        </div>
       </Form>
     </div>
   )
