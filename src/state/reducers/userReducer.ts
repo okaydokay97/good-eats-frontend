@@ -4,6 +4,7 @@ import { ActionType } from "../actionTypes"
 const initialState: User = {
   id: 0,
   email: '',
+  name: '',
   password: '',
   admin: false
 }

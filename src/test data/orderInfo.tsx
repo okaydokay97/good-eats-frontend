@@ -1,6 +1,7 @@
 export interface OrderInfo {
   id: number,
-  description: {food:string, price:number, quantity:number}[]
+  description: {food:string, price:number, quantity:number}[],
+  date: Date,
   price: number,
   userId: number,
   restaurantId: number

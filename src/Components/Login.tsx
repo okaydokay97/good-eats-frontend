@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap'
+import { bindActionCreators } from 'redux'
+import { actionCreators } from '../state'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+import path from 'path';
 
 
   type Form = {
@@ -10,6 +15,9 @@ const Login: React.FC = () => {
 
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const dispatch = useDispatch()
+  const { addUser } = bindActionCreators(actionCreators, dispatch)
+  const navigate = useNavigate()
 
   function handleChange(e:any){
     let form = e.target
@@ -21,9 +29,19 @@ const Login: React.FC = () => {
     }
   }
 
-  function handleSubmit(event:any){
-    event.preventDefault()
-    console.log(email, password)
+  function handleSubmit(e:any){
+    e.preventDefault()
+    fetch('http://localhost:4000/user', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    })
+    .then(response => response.json())
+    .then(user => addUser(user))
+    navigate('/')
   }
 
   return (
