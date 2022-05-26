@@ -67,10 +67,9 @@ const ShowOrderCourse: React.FC = () => {
               className="mb-2"
               onClick={(e:any) => {setShownCourse(e.currentTarget.id)}}
             >
-              <Card.Header className='centered-list' style={{height:'5rem', flexDirection:'column',}}>
-                <ul className='centered-list no-bullets' style={{listStyleType:'none'}}>
+              <Card.Header className='centered-list' style={{height:'5rem',}}>
+                <ul className='centered-list no-bullets' style={{margin:'auto'}}>
                   <li className="inline "><b>{course}</b></li>
-                  <li className="inline"> {'>'} </li>
                 </ul>
               </Card.Header>
             </Card>

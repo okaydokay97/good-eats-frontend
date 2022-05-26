@@ -1,15 +1,15 @@
 import  { Action, RestaurantInfo } from '../actions'
 import { ActionType } from '../actionTypes'
-import { restaurant1 } from '../../test data/restaurantInfo'
+
 
 
 const initialState: RestaurantInfo = {
   id: 0,
-  restaurantName: '',
+  name: '',
   cuisine:[],
   menu: {},
   address:'',
-  pictures: '',
+  picture: '',
   deliver:false,
   adminUserId:0
 }

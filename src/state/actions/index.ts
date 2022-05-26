@@ -11,11 +11,11 @@ export type Cart = {
 
 export interface RestaurantInfo {
   id: number,
-  restaurantName: string,
+  name: string,
   cuisine: string[],
   menu:{[course: string]: Food},
   address: string,
-  pictures?: string,
+  picture: string,
   deliver:boolean,
   adminUserId:number
 }

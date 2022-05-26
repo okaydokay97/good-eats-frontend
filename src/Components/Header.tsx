@@ -35,7 +35,15 @@ const Header: React.FC = () => {
   
   function handleSubmit(e:any){
     e.preventDefault()
-    console.log(searchBar)
+    fetch('http://localhost:4000/restaurantSearch', {
+      method:'POST',
+      headers:{"Content-Type": "application/json"},
+      body: JSON.stringify({
+        query: searchBar
+      })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
   }
 
   function displayLoginOrLogout(){

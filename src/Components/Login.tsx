@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import {Form, Button} from 'react-bootstrap'
 import { bindActionCreators } from 'redux'
-import { actionCreators } from '../state'
-import { useDispatch } from 'react-redux'
+import { actionCreators, State } from '../state'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import path from 'path';
+
 
 
   type Form = {
@@ -18,10 +18,11 @@ const Login: React.FC = () => {
   const dispatch = useDispatch()
   const { addUser } = bindActionCreators(actionCreators, dispatch)
   const navigate = useNavigate()
+  const cart = useSelector((state:State) => state.cart)
+  const restaurant = useSelector((state:State) => state.restaurant)
 
   function handleChange(e:any){
     let form = e.target
-    
     if (form.id === 'loginEmail'){
       setEmail(form.value)
     } else if (form.id === 'loginPassword'){
@@ -43,6 +44,9 @@ const Login: React.FC = () => {
     .then(user => {
       if (user.message) {
         alert(user.message)
+      } else if (cart) {
+        addUser(user)
+        navigate(`/${restaurant.id}/order`)
       } else {
         addUser(user)
         navigate('/')

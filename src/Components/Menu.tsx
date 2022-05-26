@@ -41,7 +41,7 @@ export function getFoods(foodsArray:Foods): any[] {
   let listFood = foodsArray.map((food) => {
     return(
       <ListGroup.Item key={food.name}style={{borderWidth:'1px'}}>
-        <ul className='centered-list no-bullets'>
+        <ul className='centered-list no-bullets' style={{margin:'auto', padding:'2%'}}>
           <li className='inline'>{food.name}</li>
           <li className='inline'>{food.price.toFixed(2)}</li>
         </ul>

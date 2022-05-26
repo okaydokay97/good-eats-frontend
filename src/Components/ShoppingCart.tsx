@@ -2,6 +2,7 @@ import React, { SyntheticEvent, useState } from 'react'
 import { Modal, Button, Card } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { State } from '../state'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
   show: boolean,
@@ -11,8 +12,16 @@ const ShoppingCart: React.FC<Props> = ({ show, setShow }) => {
 
   const handleShow = () => {setShow(!show)}
   const cart = useSelector((state:State)=> state.cart)
-
-  
+  const restaurant = useSelector((state:State) => state.restaurant)
+  const user = useSelector((state:State) => state.user)
+  const navigate = useNavigate()
+  function handleClick() {
+    if (user.id === 0) {
+      navigate('/login')
+    } else {
+      navigate(`/${restaurant.id}/checkout`)
+    }
+  }
 
 
   function showCartEntries(): JSX.Element {
@@ -69,7 +78,7 @@ const ShoppingCart: React.FC<Props> = ({ show, setShow }) => {
             <Button className='inline' variant="secondary" onClick={handleShow}>
               Close
             </Button>
-            <Button  href='/checkout' className='inline' variant="primary">
+            <Button  onClick={handleClick} className='inline' variant="primary">
               Check Out
             </Button>
           </Modal.Footer>

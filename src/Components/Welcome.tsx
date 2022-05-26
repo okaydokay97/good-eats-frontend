@@ -12,10 +12,10 @@ const Welcome: React.FC = () => {
     <div style={{textAlign:'center'}}>
       <ul className="no-bullets">
         <li style={{textAlign:'center'}}>
-          <h1 style={{margin:'auto'}}>{restaurant.restaurantName}</h1>
+          <h1 style={{margin:'auto'}}>{restaurant.name}</h1>
         </li>
         <li>
-          <FoodCarousel name={restaurant.restaurantName}/>
+          <FoodCarousel name={restaurant.name}/>
         </li>
       </ul>
     </div>
