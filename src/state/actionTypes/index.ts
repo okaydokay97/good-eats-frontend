@@ -5,5 +5,7 @@ export enum ActionType {
   REMOVEITEMFROMCART = 'removeItemFromCart',
   CLEARITEMSFROMCART = 'clearItemsFromCart',
   ADDUSER = 'addUser',
-  REMOVEUSER = 'removeUser'
+  REMOVEUSER = 'removeUser',
+  ADDFILTER = 'addFilter',
+  REMOVEFILTER = 'removeFilter'
 }

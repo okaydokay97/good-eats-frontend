@@ -62,6 +62,15 @@ interface RemoveUserAction {
   type: ActionType.REMOVEUSER
 }
 
+interface AddFilterAction{
+  type: ActionType.ADDFILTER
+  payload: string
+}
+
+interface RemoveFilterAction{
+  type: ActionType.REMOVEFILTER
+}
+
 export type Action = (
   AddRestaurantAction | 
   RemoveRestaurantAction |
@@ -69,6 +78,8 @@ export type Action = (
   RemoveItemFromCartAction |
   ClearItemsFromCartAction |
   AddUserAction |
-  RemoveUserAction
+  RemoveUserAction |
+  AddFilterAction |
+  RemoveFilterAction
 )
 

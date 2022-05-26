@@ -45,3 +45,7 @@ Modal .spaced-list{
   display: flex;
   justify-content: space-between;
 }
+
+.filter-food {
+  cursor:pointer;
+}

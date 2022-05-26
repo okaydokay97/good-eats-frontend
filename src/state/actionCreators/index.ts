@@ -63,3 +63,12 @@ export const removeUser = () => {
     })
   }
 }
+
+export const addFilter = (filter:string) => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.ADDFILTER,
+      payload: filter
+    })
+  }
+}
